@@ -3,19 +3,19 @@ const pollutionScale = [
     scale: [0, 50],
     quality: "Good",
     src: "happy",
-    background: "linear-gradient(to right, #45B649, #DCE35B)",
+    background: "linear-gradient(to right, #154734, #6EC531)",
   },
   {
     scale: [51, 100],
     quality: "Moderate",
     src: "thinking",
-    background: "linear-gradient(to right, #F3F9A7, #CAC531)",
+    background: "linear-gradient(to right, #ECEBBD, #FFCB05)",
   },
   {
     scale: [101, 150],
     quality: "Unhealthy",
     src: "unhealthy",
-    background: "linear-gradient(to right, #F16529, #E44D26)",
+    background: "linear-gradient(to right, #FFA400, #E44D26)",
   },
   {
     scale: [151, 200],
