@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qualité de l'air</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
-            rel="stylesheet" />
-    <title>Qualité de l'air</title>
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
     <div class="background-layer"></div>
+
     <div class="app-container">
-        <h1>Qualité de l'air</h1>
-    
-        <div class="information-block">
-            <div class="loader active">
-                <img src="assets/icons/biodegradable.svg" alt="Loader icon" class="loader-icon">
-            </div>
-            <img src="assets/icons/magnifying-glass.svg" alt="Feeling icon" class="emoji-icon">
-            <p class="user-information">Au sujet de la ville localisée.</p>
-            <table>
-                <tr>
-                    <th class="label">Ville</th>
-                    <td class="city-name">...</td>
-                </tr>
-                <tr>
-                    <th class="label">Pollution</td>
-                </tr>
-                <tr>
-                    <th class="label">Index de qualité</th>
-                    <td class="pollution-value">...</td>
-                </tr>
-            </table>
-            <p class="scale-bar-text">Échelle de pollution :</p>
-            <div class="scale-container">
-                <img src="assets/icons/location.svg" alt="Location" class="location-pointer">
-                <div class="scale-section"></div>
-                <div class="scale-section"></div>
-                <div class="scale-section"></div>
-                <div class="scale-section"></div>
-                <div class="scale-section"></div>
-                <div class="scale-section"></div>
-            </div>
+      <h1>Qualité de l'air</h1>
+
+      <div class="information-block">
+        <div class="loader active">
+          <img src="assets/icons/biodegradable.svg" alt="loader icon" class="loader-logo">
         </div>
+
+        <img src="assets/icons/magnifying-glass.svg" alt="feeling icon" class="emoji">
+        <p class="user-information">À propos de votre localisation</p>
+
+        <table>
+          <tr>
+            <th class="label">Ville</th>
+            <td class="city-name">...</td>
+          </tr>
+          <tr>
+            <th class="label">Pollution</th>
+            <td class="pollution-info">...</td>
+          </tr>
+          <tr>
+            <th class="label">Index de qualité</th>
+            <td class="pollution-value">...</td>
+          </tr>
+        </table>
+
+        <p class="scale-bar-text">Échelle de pollution :</p>
+        <div class="scale-container">
+          <img src="assets/icons/location.svg" alt="location" class="location-pointer">
+          <div class="scale-section"></div>
+          <div class="scale-section"></div>
+          <div class="scale-section"></div>
+          <div class="scale-section"></div>
+          <div class="scale-section"></div>
+          <div class="scale-section"></div>
+        </div>
+      </div>
     </div>
-    <script src="main.js"></script>
-</body>
+
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
