@@ -11,7 +11,7 @@ body {
   font-family: "Inter", sans-serif;
   color: #111;
   position: relative;
-  background-image: linear-gradient(45deg, #4ba0d9, #6dd5fa, #fff);
+  background-image: linear-gradient(45deg, #4ba0d9, #6dd5fa, #ffc200);
   opacity: 0;
   animation: fadeIn 1s ease-out forwards;
 }
