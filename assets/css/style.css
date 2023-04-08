@@ -11,9 +11,9 @@ body {
   font-family: "Inter", sans-serif;
   color: #111;
   position: relative;
-  background-image: linear-gradient(45deg, #4ba0d9, #6dd5fa, #ffc200);
+  background-image: linear-gradient(45deg, #4ba0d9, #85d9f8, #ffc200);
   opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1.5s ease-out forwards;
 }
 @keyframes fadeIn {
   to {
@@ -33,12 +33,12 @@ body {
   padding: 50px 10px 0;
 }
 h1 {
-  font-family: Roboto, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 72px;
   margin-bottom: 50px;
   text-transform: uppercase;
-  color: #f1f1f1;
+  color: #eae2d0;
   text-shadow:
   1px 1px 0 #333,
   2px 2px 0 #3a3a3a,
@@ -47,11 +47,11 @@ h1 {
 }
 
 .information-block {
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 25px 25px 50px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  padding: 25px 25px 55px;
   position: relative;
   box-shadow: 0 5px 5px rgba(0,0,0,0.3);
 }
@@ -75,7 +75,7 @@ h1 {
   opacity: 1;
 }
 .loader-logo {
-  width: 75px;
+  width: 600px;
   animation: loader 1.8s ease-out infinite;
 }
 @keyframes loader {
@@ -125,34 +125,35 @@ td {
   left: -15px;
   width: 30px;
   margin-top: 15px;
+  filter: drop-shadow(-2px -2px 1px #aca5806e);
   transform: rotate(180deg);
   transition: transform 0.4s ease-out;
 }
 .scale-section {
   height: 10px;
   flex-grow: 1;
-  background-color: red;
+  background-color: rgba(224, 211, 196, 0.25);
 }
 .scale-section:not(:last-child) { /* pas la dernière section */
-  border-right: 2px solid #f1f1f1;
+  border-right: 2px solid rgba(255, 255, 255, .75);
 }
 .scale-section:nth-child(2) {
-  background-color: green;
+  background-color:  green;
 }
 .scale-section:nth-child(3) {
-  background-color: #d7d703;
+  background-color: #ffff00;
 }
 .scale-section:nth-child(4) {
-  background-color: orange;
+  background-color: rgb(255, 153, 0);
 }
 .scale-section:nth-child(5) {
   background-color: red;
 }
 .scale-section:nth-child(6) {
-  background-color: purple;
-  flex-grow: 2;
+  background-color: rgb(105, 27, 136);
+  flex-grow: 2; /* largeur */
 }
 .scale-section:nth-child(7) {
-  background-color: maroon;
+  background-color: rgb(128, 41, 0);
   flex-grow: 4;
 }

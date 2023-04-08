@@ -3,37 +3,37 @@ const pollutionScale = [
     scale: [0, 50],
     quality: "Good",
     src: "happy",
-    background: "linear-gradient(to right, #154734, #6EC531)",
+    background: "linear-gradient(to right, #154734, #C4FF33)",
   },
   {
     scale: [51, 100],
     quality: "Moderate",
     src: "thinking",
-    background: "linear-gradient(to right, #ECEBBD, #FFCB05)",
+    background: "linear-gradient(to right, #f2ff00, #FFAF00)",
   },
   {
     scale: [101, 150],
     quality: "Unhealthy",
     src: "unhealthy",
-    background: "linear-gradient(to right, #FFA400, #E44D26)",
+    background: "linear-gradient(to right, #FFA400, #ff6600)",
   },
   {
     scale: [151, 200],
     quality: "Bad",
     src: "bad",
-    background: "linear-gradient(to right, #ef473a, #cb2d3e)",
+    background: "linear-gradient(to right, #FF5733, #cb2d3e)",
   },
   {
     scale: [201, 300],
     quality: "Very bad",
     src: "mask",
-    background: "linear-gradient(to right, #8E54E9, #4776E6)",
+    background: "linear-gradient(to right, #8E54E9, #260038)",
   },
   {
     scale: [301, 500],
     quality: "Terrible",
     src: "terrible",
-    background: "linear-gradient(to right, #7a2828, #a73737)",
+    background: "linear-gradient(to right, #572121, #1a0904)",
   },
 ];
 
