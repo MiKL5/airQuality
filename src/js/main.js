@@ -1,31 +1,31 @@
 const pollutionScale = [
   {
     scale: [0, 50],
-    quality: "Good",
+    quality: "Respirable",
     src: "happy",
     background: "linear-gradient(to right, #154734, #C4FF33)",
   },
   {
     scale: [51, 100],
-    quality: "Moderate",
+    quality: "Modérée",
     src: "thinking",
     background: "linear-gradient(to right, #f2ff00, #FFAF00)",
   },
   {
     scale: [101, 150],
-    quality: "Unhealthy",
+    quality: "Mauvais",
     src: "unhealthy",
     background: "linear-gradient(to right, #FFA400, #ff6600)",
   },
   {
     scale: [151, 200],
-    quality: "Bad",
+    quality: "Assez mauvais",
     src: "bad",
     background: "linear-gradient(to right, #FF5733, #cb2d3e)",
   },
   {
     scale: [201, 300],
-    quality: "Very bad",
+    quality: "Vraiment mauvais",
     src: "mask",
     background: "linear-gradient(to right, #8E54E9, #260038)",
   },
@@ -63,7 +63,7 @@ async function getPollutionData(){
   }
   catch(error) {
     loader.classList.remove("active");
-    emojiLogo.src = "./assets/icons/browser.svg";
+    emojiLogo.src = "./src/icons/browser.svg";
     userInformation.textContent = error.message;
   }
 }
@@ -77,7 +77,7 @@ const backgroundLayer = document.querySelector(".background-layer");
 
 function populateUI(data){
   console.log(data);
-  emojiLogo.src = `assets/icons/${data.src}.svg`;
+  emojiLogo.src = `src/icons/${data.src}.svg`;
   userInformation.textContent = `Voici la situation à ${data.city}.`;
   cityName.textContent = data.city;
   pollutionInfo.textContent = `${data.quality}`;
