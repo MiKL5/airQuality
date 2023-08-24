@@ -94,3 +94,8 @@ function pointerPlacement(AQIValue){
   const parentWidth = locationPointer.parentElement.scrollWidth;
   locationPointer.style.transform = `translateX(${(AQIValue / 500) * parentWidth}px) rotate(180deg)`
 }
+
+// To set the src of the emojiLogo image to the appropriate image file based on the AQI value
+// const aqiValue = data.aqi;
+// const imageSrc = pollutionScale.find(obj => aqiValue >= obj.scale[0] && aqiValue <= obj.scale[1])['src'];
+// emojiLogo.src = `src/background/${imageSrc}';
