@@ -31,7 +31,7 @@ const pollutionScale = [
   },
   {
     scale: [301, 500],
-    quality: "Terrible",
+    quality: "Dangereux",
     src: "terrible",
     background: "linear-gradient(to right, #572121, #1a0904)",
   },
@@ -79,7 +79,7 @@ function populateUI(data){
   console.log(data);
   emojiLogo.src = `src/icons/${data.src}.svg`;
   userInformation.textContent = `Voici la situation à ${data.city}.`;
-  cityName.textContent = data.city;
+  // cityName.textContent = data.city;
   pollutionInfo.textContent = `${data.quality}`;
   pollutionValue.textContent = `${data.aqi}`;
   backgroundLayer.style.backgroundImage = data.background;
