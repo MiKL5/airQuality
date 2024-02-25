@@ -70,7 +70,7 @@ async function getPollutionData(){
 getPollutionData();
 
 
-// const cityName = document.querySelector(".city-name");
+const cityName = document.querySelector(".city-name");
 const pollutionInfo = document.querySelector(".pollution-info");
 const pollutionValue = document.querySelector(".pollution-value");
 const backgroundLayer = document.querySelector(".background-layer");
@@ -79,7 +79,7 @@ function populateUI(data){
   console.log(data);
   emojiLogo.src = `src/icons/${data.src}.svg`;
   userInformation.textContent = `Voici la situation à ${data.city}.`;
-  // cityName.textContent = data.city;
+  cityName.textContent = data.city;
   pollutionInfo.textContent = `${data.quality}`;
   pollutionValue.textContent = `${data.aqi}`;
   backgroundLayer.style.backgroundImage = data.background;
