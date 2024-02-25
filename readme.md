@@ -1,7 +1,6 @@
-# **AirQuality**
+# **AirQuality**<a href="#"><img align="right" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript" height="64px"></a>
 
-Ce webapp géolocalise via l'adresse IP pour donner le taux de pollution.
+Cette web App géolocalise à travers l'adresse IP pour donner la qualité de l'air via une API.
 
 <div align="center">
-
-![AirQuality](assets/screenshot/airQuality.png)
+<a href="https://mikl5.github.io/airQuality/"><img src="assets/screenshot/airQuality.png" alt="AirQuality"></a>
