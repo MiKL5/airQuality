@@ -70,7 +70,7 @@ async function getPollutionData(){
 getPollutionData();
 
 
-const cityName = document.querySelector(".city-name");
+// const cityName = document.querySelector(".city-name");
 const pollutionInfo = document.querySelector(".pollution-info");
 const pollutionValue = document.querySelector(".pollution-value");
 const backgroundLayer = document.querySelector(".background-layer");
