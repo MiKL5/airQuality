@@ -43,7 +43,7 @@ const userInformation = document.querySelector(".user-information");
 
 async function getPollutionData(){
   try {
-    const response = await fetch("https://api.airvisual.com/v2/nearest_city?key=bf605e1a-1c3d-43d6-9770-33d0f6f91d69").catch(error => { //attend le résultat de l'api
+    const response = await fetch("https://api.airvisual.com/v2/nearest_city?key=1e369378-070d-489a-8edb-188b2aa569a0").catch(error => { //attend le résultat de l'api
       throw new Error(error); 
     })
     if(!response.ok){
