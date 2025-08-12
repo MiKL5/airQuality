@@ -43,7 +43,7 @@ const userInformation = document.querySelector(".user-information");
 
 async function getPollutionData(){
   try {
-    const response = await fetch("https://api.airvisual.com/v2/nearest_city?key=1e369378-070d-489a-8edb-188b2aa569a0").catch(error => { //attend le résultat de l'api
+    const response = await fetch("https://api.airvisual.com/v2/nearest_city?key=0f480cce-edee-4f6e-b0f6-f9e975e4b96f").catch(error => { //attend le résultat de l'api
       throw new Error(error); 
     })
     if(!response.ok){
@@ -78,7 +78,7 @@ const backgroundLayer = document.querySelector(".background-layer");
 function populateUI(data){
   console.log(data);
   emojiLogo.src = `src/icons/${data.src}.svg`;
-  userInformation.textContent = `Voici la situation à ${data.city}.`;
+  userInformation.textContent = `Voici la situation à ${data.city}`;
   cityName.textContent = data.city;
   pollutionInfo.textContent = `${data.quality}`;
   pollutionValue.textContent = `${data.aqi}`;
