@@ -41,59 +41,59 @@ const loader = document.querySelector(".loader");
 const emojiLogo = document.querySelector(".emoji");
 const userInformation = document.querySelector(".user-information");
 
-async function getPollutionData(){
+async function getPollutionData() {
   try {
-    const response = await fetch("https://api.airvisual.com/v2/nearest_city?key=0f480cce-edee-4f6e-b0f6-f9e975e4b96f").catch(error => { //attend le résultat de l'api
-      throw new Error(error); 
-    })
-    if(!response.ok){
-      throw new Error(`Error ${response.status}, ${response.statusText}`) 
-    }
-    else {
+    const response = await fetch(
+      "https://api.airvisual.com/v2/nearest_city?key=0f480cce-edee-4f6e-b0f6-f9e975e4b96f"
+    );
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}, ${response.statusText}`);
+    } else {
       const responseData = await response.json();
       const aqi = responseData.data.current.pollution.aqius;
-      
+
       const sortedData = {
         city: responseData.data.city,
         aqi,
-        ...pollutionScale.find(obj => aqi >= obj.scale[0] && aqi <= obj.scale[1])
-      }
-      populateUI(sortedData)
+        ...pollutionScale.find((obj) => aqi >= obj.scale[0] && aqi <= obj.scale[1]),
+      };
+      populateUI(sortedData);
     }
-  }
-  catch(error) {
+  } catch (error) {
     loader.classList.remove("active");
     emojiLogo.src = "./src/icons/browser.svg";
     userInformation.textContent = error.message;
   }
 }
-getPollutionData();
 
+getPollutionData();
 
 const cityName = document.querySelector(".city-name");
 const pollutionInfo = document.querySelector(".pollution-info");
 const pollutionValue = document.querySelector(".pollution-value");
 const backgroundLayer = document.querySelector(".background-layer");
 
-function populateUI(data){
+function populateUI(data) {
   console.log(data);
   emojiLogo.src = `src/icons/${data.src}.svg`;
   userInformation.textContent = `Voici la situation à ${data.city}`;
   cityName.textContent = data.city;
-  pollutionInfo.textContent = `${data.quality}`;
-  pollutionValue.textContent = `${data.aqi}`;
+  pollutionInfo.textContent = data.quality;
+  pollutionValue.textContent = data.aqi;
   backgroundLayer.style.backgroundImage = data.background;
   loader.classList.remove("active");
-  
-  pointerPlacement(data.aqi)
+
+  pointerPlacement(data.aqi);
 }
 
 const locationPointer = document.querySelector(".location-pointer");
 
-function pointerPlacement(AQIValue){
+function pointerPlacement(AQIValue) {
   const parentWidth = locationPointer.parentElement.scrollWidth;
-  locationPointer.style.transform = `translateX(${(AQIValue / 500) * parentWidth}px) rotate(180deg)`
+  locationPointer.style.transform = `translateX(${(AQIValue / 500) * parentWidth}px) rotate(180deg)`;
 }
+
 
 // To set the src of the emojiLogo image to the appropriate image file based on the AQI value
 // const aqiValue = data.aqi;
