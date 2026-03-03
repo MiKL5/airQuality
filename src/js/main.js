@@ -1,101 +1,27 @@
-const pollutionScale = [
-  {
-    scale: [0, 50],
-    quality: "Respirable",
-    src: "happy",
-    background: "linear-gradient(to right, #154734, #C4FF33)",
-  },
-  {
-    scale: [51, 100],
-    quality: "Modérée",
-    src: "thinking",
-    background: "linear-gradient(to right, #f2ff00, #FFAF00)",
-  },
-  {
-    scale: [101, 150],
-    quality: "Mauvais",
-    src: "unhealthy",
-    background: "linear-gradient(to right, #FFA400, #ff6600)",
-  },
-  {
-    scale: [151, 200],
-    quality: "Assez mauvais",
-    src: "bad",
-    background: "linear-gradient(to right, #FF5733, #cb2d3e)",
-  },
-  {
-    scale: [201, 300],
-    quality: "Vraiment mauvais",
-    src: "mask",
-    background: "linear-gradient(to right, #8E54E9, #260038)",
-  },
-  {
-    scale: [301, 500],
-    quality: "Dangereux",
-    src: "terrible",
-    background: "linear-gradient(to right, #572121, #1a0904)",
-  },
-];
-
-const loader = document.querySelector(".loader");
-const emojiLogo = document.querySelector(".emoji");
-const userInformation = document.querySelector(".user-information");
-
-async function getPollutionData() {
-  try {
-    const response = await fetch(
-      "https://api.airvisual.com/v2/nearest_city?key=0f480cce-edee-4f6e-b0f6-f9e975e4b96f"
-    );
-
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}, ${response.statusText}`);
-    } else {
-      const responseData = await response.json();
-      const aqi = responseData.data.current.pollution.aqius;
-
-      const sortedData = {
-        city: responseData.data.city,
-        aqi,
-        ...pollutionScale.find((obj) => aqi >= obj.scale[0] && aqi <= obj.scale[1]),
-      };
-      populateUI(sortedData);
-    }
-  } catch (error) {
-    loader.classList.remove("active");
-    emojiLogo.src = "./src/icons/browser.svg";
-    userInformation.textContent = error.message;
-  }
-}
-
-getPollutionData();
-
-const cityName = document.querySelector(".city-name");
-const pollutionInfo = document.querySelector(".pollution-info");
-const pollutionValue = document.querySelector(".pollution-value");
-const backgroundLayer = document.querySelector(".background-layer");
-
-function populateUI(data) {
-  console.log(data);
-  emojiLogo.src = `src/icons/${data.src}.svg`;
-  userInformation.textContent = `Voici la situation à ${data.city}`;
-  cityName.textContent = data.city;
-  pollutionInfo.textContent = data.quality;
-  pollutionValue.textContent = data.aqi;
-  backgroundLayer.style.backgroundImage = data.background;
-  loader.classList.remove("active");
-
-  pointerPlacement(data.aqi);
-}
-
-const locationPointer = document.querySelector(".location-pointer");
-
-function pointerPlacement(AQIValue) {
-  const parentWidth = locationPointer.parentElement.scrollWidth;
-  locationPointer.style.transform = `translateX(${(AQIValue / 500) * parentWidth}px) rotate(180deg)`;
-}
-
-
-// To set the src of the emojiLogo image to the appropriate image file based on the AQI value
-// const aqiValue = data.aqi;
-// const imageSrc = pollutionScale.find(obj => aqiValue >= obj.scale[0] && aqiValue <= obj.scale[1])['src'];
-// emojiLogo.src = `src/background/${imageSrc}';
+var API_KEY='0f480cce-edee-4f6e-b0f6-f9e975e4b96f';var AIRVISUAL='https://api.airvisual.com/v2/nearest_city';var NOMINATIM='https://nominatim.openstreetmap.org/search';var _cache=new Map();function cacheGet(k){var e=_cache.get(k);if(!e)return null;if(Date.now()>e.exp){_cache.delete(k);return null}return e.v}
+function cacheSet(k,v){_cache.set(k,{v:v,exp:Date.now()+300000})}
+var pollutionScale=[{scale:[0,50],quality:'Respirable',src:'happy',background:'linear-gradient(to right,#154734,#C4FF33)'},{scale:[51,100],quality:'Moderee',src:'thinking',background:'linear-gradient(to right,#f2ff00,#FFAF00)'},{scale:[101,150],quality:'Mauvais',src:'unhealthy',background:'linear-gradient(to right,#FFA400,#ff6600)'},{scale:[151,200],quality:'Assez mauvais',src:'bad',background:'linear-gradient(to right,#FF5733,#cb2d3e)'},{scale:[201,300],quality:'Vraiment mauvais',src:'mask',background:'linear-gradient(to right,#8E54E9,#260038)'},{scale:[301,Infinity],quality:'Dangereux',src:'terrible',background:'linear-gradient(to right,#572121,#1a0904)'}];function getScaleEntry(aqi){return pollutionScale.find(function(o){return aqi>=o.scale[0]&&aqi<=o.scale[1]})}
+var loader=document.querySelector('.loader');var emojiLogo=document.querySelector('.emoji');var userInformation=document.querySelector('.user-information');var cityNameEl=document.querySelector('.city-name');var pollutionInfo=document.querySelector('.pollution-info');var pollutionValue=document.querySelector('.pollution-value');var backgroundLayer=document.querySelector('.background-layer');var locationPointer=document.querySelector('.location-pointer');var citySearch=document.querySelector('.city-search');var searchBtn=document.querySelector('.search-btn');var locationBtn=document.querySelector('.location-btn');var dropdown=document.getElementById('autocomplete-dropdown');function showLoader(){loader.setAttribute('aria-busy','true');loader.classList.add('active')}
+function hideLoader(){loader.setAttribute('aria-busy','false');loader.classList.remove('active')}
+function showError(msg){hideLoader();emojiLogo.src='./src/icons/browser.svg';userInformation.textContent=msg}
+function getByGeolocation(){citySearch.value='';if(!navigator.geolocation){return getPollutionByIP()}
+  showLoader();navigator.geolocation.getCurrentPosition(function(pos){var lat=pos.coords.latitude.toFixed(4);var lon=pos.coords.longitude.toFixed(4);getPollutionByCoords(lat,lon).catch(function(){getPollutionByIP()})},function(){getPollutionByIP()},{timeout:8000,maximumAge:300000})}
+async function fetchAirVisual(qs){var url=AIRVISUAL+'?'+(qs?qs+'&':'')+'key='+API_KEY;var res=await fetch(url);var json=await res.json();if(!res.ok||json.status!=='success')
+  throw new Error(json&&json.data&&json.data.message?json.data.message:'Erreur '+res.status);return json}
+async function getPollutionByCoords(lat,lon){var k=lat+','+lon;var cached=cacheGet(k);if(cached){processPollutionData(cached);return}
+  var data=await fetchAirVisual('lat='+lat+'&lon='+lon);cacheSet(k,data);processPollutionData(data)}
+async function getPollutionByIP(){showLoader();try{var data=await fetchAirVisual('');processPollutionData(data)}catch(err){showError(err.message)}}
+function processPollutionData(d){var aqi=d.data.current.pollution.aqius;var entry=getScaleEntry(aqi);populateUI({city:d.data.city,aqi:aqi,quality:entry.quality,src:entry.src,background:entry.background})}
+function populateUI(data){emojiLogo.src='src/icons/'+data.src+'.svg';emojiLogo.alt=data.quality;userInformation.textContent='Voici la situation a '+data.city;cityNameEl.textContent=data.city;pollutionInfo.textContent=data.quality;pollutionValue.textContent=data.aqi;backgroundLayer.style.backgroundImage=data.background;hideLoader();pointerPlacement(data.aqi)}
+function pointerPlacement(aqi){var clamped=Math.min(aqi,500);var w=locationPointer.parentElement.scrollWidth;locationPointer.style.transform='translateX('+((clamped/500)*w)+'px) rotate(180deg)'}
+async function geocodeCity(query){var params=new URLSearchParams({q:query,format:'json',limit:1,'accept-language':'fr',addressdetails:1});var res=await fetch(NOMINATIM+'?'+params,{headers:{'User-Agent':'AirQualityApp/1.0'}});if(!res.ok)throw new Error('Erreur de geocodage');var data=await res.json();if(!data.length)throw new Error('Ville introuvable : '+query);return{lat:parseFloat(data[0].lat).toFixed(4),lon:parseFloat(data[0].lon).toFixed(4)}}
+async function handleSearch(){var query=citySearch.value.trim();if(!query)return;closeDropdown();showLoader();try{var coords=await geocodeCity(query);await getPollutionByCoords(coords.lat,coords.lon)}catch(err){showError(err.message)}}
+var _acTimer=null;var _acActive=-1;function debounce(fn,ms){return function(){var args=arguments;clearTimeout(_acTimer);_acTimer=setTimeout(function(){fn.apply(null,args)},ms)}}
+async function fetchSuggestions(query){var params=new URLSearchParams({q:query,format:'json',limit:5,'accept-language':'fr',addressdetails:1});var res=await fetch(NOMINATIM+'?'+params,{headers:{'User-Agent':'AirQualityApp/1.0'}});if(!res.ok)return[];var data=await res.json();return data.map(function(r){var city=r.address.city||r.address.town||r.address.village||r.address.county||r.display_name.split(',')[0].trim();var country=r.address.country||'';return{label:city,country:country,lat:parseFloat(r.lat).toFixed(4),lon:parseFloat(r.lon).toFixed(4)}})}
+function openDropdown(items){dropdown.innerHTML='';_acActive=-1;if(!items.length){closeDropdown();return}
+  items.forEach(function(item,i){var li=document.createElement('li');li.className='autocomplete-option';li.setAttribute('role','option');li.setAttribute('id','ac-opt-'+i);li.setAttribute('aria-selected','false');li.innerHTML='<span class="city-label">'+item.label+'</span><span class="country-label">'+item.country+'</span>';li.addEventListener('mousedown',function(e){e.preventDefault();selectSuggestion(item)});dropdown.appendChild(li)});dropdown.removeAttribute('hidden');citySearch.setAttribute('aria-expanded','true')}
+function closeDropdown(){dropdown.setAttribute('hidden','');citySearch.setAttribute('aria-expanded','false');citySearch.removeAttribute('aria-activedescendant');_acActive=-1}
+function selectSuggestion(item){citySearch.value=item.label;closeDropdown();showLoader();getPollutionByCoords(item.lat,item.lon).catch(function(err){showError(err.message)})}
+var onInput=debounce(async function(){var q=citySearch.value.trim();if(q.length<2){closeDropdown();return}
+  var items=await fetchSuggestions(q);openDropdown(items)},320);citySearch.addEventListener('input',onInput);citySearch.addEventListener('keydown',function(e){var opts=dropdown.querySelectorAll('.autocomplete-option');if(e.key==='ArrowDown'){e.preventDefault();_acActive=Math.min(_acActive+1,opts.length-1);updateActiveOpt(opts)}else if(e.key==='ArrowUp'){e.preventDefault();_acActive=Math.max(_acActive-1,-1);updateActiveOpt(opts)}else if(e.key==='Enter'){if(_acActive>=0&&opts[_acActive]){opts[_acActive].dispatchEvent(new MouseEvent('mousedown'))}else{handleSearch()}}else if(e.key==='Escape'){closeDropdown()}});function updateActiveOpt(opts){opts.forEach(function(o,i){o.setAttribute('aria-selected',i===_acActive?'true':'false')});if(_acActive>=0){citySearch.setAttribute('aria-activedescendant','ac-opt-'+_acActive);opts[_acActive].scrollIntoView({block:'nearest'})}else{citySearch.removeAttribute('aria-activedescendant')}}
+document.addEventListener('click',function(e){if(!citySearch.contains(e.target)&&!dropdown.contains(e.target))closeDropdown();});searchBtn.addEventListener('click',handleSearch);locationBtn.addEventListener('click',getByGeolocation);getByGeolocation()
