@@ -5,4 +5,4 @@ Cette web App donne la qualité de l'air via une API.
 Cliquez sur la capture pour l'utiliser.
 
 <div align="center">
-<a href="https://mikl5.github.io/airQuality/"><img src="assets/screenshot/airQuality.webp" alt="AirQuality"></a>
+<a href="https://mikl5.github.io/air-quality/"><img src="assets/screenshot/airQuality.webp" alt="AirQuality"></a>
